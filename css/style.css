@@ -1,0 +1,712 @@
+
+/* ==============================
+   GLOBAL
+============================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background:
+        linear-gradient(rgba(0,0,0,.48), rgba(0,0,0,.48)),
+        url('../images/background.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+
+/* ==============================
+   LOGIN LAYOUT
+============================== */
+
+.overlay {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 30px;
+    gap: 30px;
+}
+
+.left-side {
+    color: white;
+}
+
+.left-side h3 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.left-side h1 {
+    font-size: 70px;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.highlight {
+    color: #e5d148;
+}
+
+
+/* ==============================
+   LOGIN CARD
+============================== */
+
+.login-card {
+    width: 400px;
+    max-width: 100%;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,.2);
+}
+
+.logo {
+    width: 90px;
+    margin-bottom: 10px;
+    object-fit: contain;
+}
+
+.login-card h2 {
+    color: #102d50;
+    margin-bottom: 5px;
+}
+
+.login-card p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    outline: none;
+    font-size: 14px;
+}
+
+.login-card input:focus {
+    border-color: #233b6e;
+}
+
+
+/* ==============================
+   PASSWORD EYE ICON
+============================== */
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 48px;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    width: 35px;
+    height: 100%;
+    padding: 0;
+    background: transparent;
+    color: #233b6e;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+
+.password-toggle:hover {
+    background: transparent;
+    color: #14284f;
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
+
+/* ==============================
+   FORGOT PASSWORD
+============================== */
+
+.forgot {
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    font-size: 13px;
+    color: #1f3d7a;
+    margin-bottom: 20px;
+}
+
+.forgot:hover {
+    text-decoration: underline;
+}
+
+
+/* ==============================
+   BUTTONS
+============================== */
+
+.login-button,
+.signup-button {
+    width: 100%;
+    padding: 13px;
+    background: #203967;
+    border: none;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.login-button:hover,
+.signup-button:hover {
+    background: #14284f;
+}
+
+.signup {
+    margin-top: 15px;
+}
+
+.signup a {
+    color: #233b6e;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/* ==============================
+   MODAL OVERLAY
+============================== */
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.52);
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    z-index: 1000;
+    backdrop-filter: blur(1px);
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+
+/* ==============================
+   SIGN UP MODAL
+============================== */
+
+.signup-modal {
+    position: relative;
+    background: #fff;
+    width: 320px;
+    max-width: 100%;
+    max-height: 94vh;
+    overflow-y: auto;
+    padding: 20px 31px 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(0,0,0,.2);
+    animation: modalShow .25s ease;
+}
+
+@keyframes modalShow {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* ==============================
+   SIGN UP HEADER
+============================== */
+
+.modal-header {
+    margin-bottom: 18px;
+}
+
+.modal-header h2 {
+    color: #073967;
+    font-size: 24px;
+    font-weight: 750;
+    margin-bottom: 3px;
+}
+
+.modal-header p {
+    color: #718096;
+    font-size: 8px;
+}
+
+
+/* ==============================
+   FORM GROUPS
+============================== */
+
+.form-group {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.form-group > label {
+    display: block;
+    margin-bottom: 4px;
+    color: #31577e;
+    font-size: 9px;
+    font-weight: 500;
+}
+
+.form-group input:not([type="file"]) {
+    width: 100%;
+    height: 25px;
+    padding: 4px 9px;
+    border: 1px solid #d8d8d8;
+    background: #fafafa;
+    border-radius: 5px;
+    outline: none;
+    font-size: 10px;
+    color: #333;
+}
+
+.form-group input:focus {
+    border-color: #31568a;
+    background: #fff;
+}
+
+.form-group .password-container input {
+    padding-right: 35px;
+}
+
+
+/* ==============================
+   SIGN UP PASSWORD EYE
+============================== */
+
+.signup-modal .password-toggle {
+    right: 3px;
+    width: 28px;
+    color: #18375f;
+    font-size: 10px;
+}
+
+
+/* ==============================
+   ASSESSMENT FORM UPLOAD
+============================== */
+
+.upload-box {
+    position: relative;
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    height: 30px;
+    padding: 4px 7px;
+    background: #f4f6fa;
+    border: 1px solid #d8dce5;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .2s;
+    overflow: hidden;
+}
+
+.upload-box:hover {
+    background: #eaf0fa;
+    border-color: #31568a;
+}
+
+.upload-icon {
+    width: 19px;
+    height: 19px;
+    min-width: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #102e5c;
+    color: white;
+    border-radius: 4px;
+    font-size: 11px;
+}
+
+.upload-box #fileName {
+    font-size: 9px;
+    font-weight: 400;
+    color: #354b69;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.upload-box input[type="file"] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+/* ==============================
+   SIGN UP BUTTON
+============================== */
+
+.signup-modal .signup-button {
+    width: 90%;
+    height: 33px;
+    padding: 7px;
+    margin-top: 9px;
+    background: #203967;
+    border-radius: 9px;
+    font-size: 12px;
+}
+
+.signup-modal .signup-button:hover {
+    background: #14284f;
+}
+
+
+/* ==============================
+   MODAL LOGIN LINK
+============================== */
+
+.modal-login {
+    margin-top: 9px;
+    color: #666;
+    font-size: 9px;
+}
+
+.modal-login a {
+    color: #203967;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.modal-login a:hover {
+    text-decoration: underline;
+}
+
+
+/* ==============================
+   CLOSE MODAL BUTTON
+============================== */
+
+.close-modal {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    background: transparent;
+    color: #777;
+    border: none;
+    font-size: 17px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.close-modal:hover {
+    background: transparent;
+    color: #d00;
+}
+
+
+/* ==============================
+   SIGN UP FORM MESSAGE
+============================== */
+
+.form-message {
+    display: none;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    font-size: 11px;
+    text-align: left;
+}
+
+.form-message.error {
+    display: block;
+    background: #fff0f0;
+    color: #c62828;
+    border: 1px solid #f5c2c2;
+}
+
+
+/* ==============================
+   REGISTRATION SUCCESS MODAL
+============================== */
+
+.success-modal {
+    position: relative;
+    width: 300px;
+    max-width: 100%;
+    background: white;
+    border-radius: 12px;
+    padding: 25px 30px;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(0,0,0,.25);
+    animation: modalShow .25s ease;
+}
+
+.success-icon {
+    width: 85px;
+    height: 85px;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #555, #222);
+    color: white;
+    border: 3px solid #ddd;
+    border-radius: 50%;
+    font-size: 38px;
+    box-shadow: 0 3px 6px rgba(0,0,0,.2);
+}
+
+.success-modal h3 {
+    color: #203967;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.success-modal p {
+    color: #536583;
+    font-size: 8px;
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+.success-login-button {
+    width: 100%;
+    height: 34px;
+    background: #203967;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.success-login-button:hover {
+    background: #14284f;
+}
+
+
+/* ==============================
+   RESET PASSWORD MODAL
+============================== */
+
+.reset-password-modal {
+    position: relative;
+    background: white;
+    width: 400px;
+    max-width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 35px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(0,0,0,.25);
+    animation: modalShow .25s ease;
+}
+
+.reset-header {
+    margin-bottom: 25px;
+}
+
+.reset-icon {
+    width: 60px;
+    height: 60px;
+    background: #edf2fb;
+    color: #233b6e;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px;
+    font-size: 25px;
+}
+
+.reset-header h2 {
+    color: #1f3d7a;
+    font-size: 21px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.reset-header p {
+    color: #777;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.reset-password-modal .form-group {
+    margin-bottom: 18px;
+}
+
+.reset-password-modal .form-group label {
+    color: #333;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .4px;
+}
+
+.reset-password-modal .form-group input {
+    height: 43px;
+    padding: 10px 45px 10px 12px;
+    font-size: 13px;
+}
+
+.reset-password-modal .password-toggle {
+    height: 43px;
+}
+
+.reset-button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 8px;
+    background: #233b6e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.reset-button:hover {
+    background: #14284f;
+}
+
+
+/* ==============================
+   RESET PASSWORD MESSAGES
+============================== */
+
+.reset-message {
+    display: none;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 7px;
+    font-size: 12px;
+    text-align: left;
+}
+
+.reset-message.error {
+    display: block;
+    background: #fff0f0;
+    color: #c62828;
+    border: 1px solid #f5c2c2;
+}
+
+.reset-message.success {
+    display: block;
+    background: #edf8f0;
+    color: #23743b;
+    border: 1px solid #b9e2c4;
+}
+
+
+/* ==============================
+   SCROLLBAR
+============================== */
+
+.signup-modal::-webkit-scrollbar,
+.reset-password-modal::-webkit-scrollbar {
+    width: 5px;
+}
+
+.signup-modal::-webkit-scrollbar-thumb,
+.reset-password-modal::-webkit-scrollbar-thumb {
+    background: #c5ccda;
+    border-radius: 10px;
+}
+
+
+/* ==============================
+   MOBILE RESPONSIVE
+============================== */
+
+@media (max-width: 900px) {
+
+    .overlay {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 25px 15px;
+    }
+
+    .left-side h1 {
+        font-size: 45px;
+    }
+
+    .left-side h3 {
+        font-size: 22px;
+    }
+
+    .login-card {
+        width: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .left-side h1 {
+        font-size: 32px;
+    }
+
+    .left-side h3 {
+        font-size: 18px;
+    }
+
+    .login-card {
+        padding: 25px;
+    }
+
+    .signup-modal {
+        width: 320px;
+        padding: 22px 25px;
+    }
+
+    .reset-password-modal {
+        padding: 30px 22px;
+    }
+
+}

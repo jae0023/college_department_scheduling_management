@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Scheduling Management System | LCCN</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- LOGIN PAGE -->
+    <div class="overlay">
+
+        <div class="left-side">
+            <h3>COLLEGE DEPARTMENT</h3>
+            <h1>SCHEDULING</h1>
+            <h1 class="highlight">MANAGEMENT SYSTEM</h1>
+        </div>
+
+        <div class="login-card">
+
+            <img src="images/logo.png" class="logo" alt="LCCN Logo">
+
+            <h2>Welcome!</h2>
+            <p>Please enter your details to login</p>
+
+            <form id="loginForm">
+
+                <input type="email" id="email" name="email"
+                    placeholder="Enter email address" required>
+
+                <div class="password-container">
+                    <input type="password" id="password" name="password"
+                        placeholder="Enter password" required>
+
+                    <button type="button" class="password-toggle"
+                        onclick="togglePassword()" aria-label="Show password">
+                        <i class="fa-solid fa-eye" id="loginEye"></i>
+                    </button>
+                </div>
+
+                <a href="#" class="forgot"
+                    onclick="openResetPassword(); return false;">
+                    Forgot Password?
+                </a>
+
+                <button type="submit" class="login-button">
+                    LOG IN
+                </button>
+
+            </form>
+
+            <p class="signup">
+                Don't have an account?
+                <a href="#" onclick="openSignup(); return false;">Sign Up</a>
+            </p>
+
+        </div>
+    </div>
+
+
+    <!-- SIGN UP MODAL -->
+    <div class="modal-overlay" id="signupModal">
+
+        <div class="signup-modal">
+
+            <button type="button" class="close-modal"
+                onclick="closeSignup()" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-header">
+
+                <h2>Sign Up</h2>
+                <p>Create your account right now to reserve your queue</p>
+
+            </div>
+
+            <form id="signupForm">
+
+                <div class="form-group">
+                    <label for="fullName">Full name</label>
+                    <input type="text" id="fullName" name="full_name"
+                        placeholder="" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupEmail">LCCN Email</label>
+                    <input type="email" id="signupEmail" name="email"
+                        placeholder="" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="tel" id="mobile" name="mobile"
+                        placeholder="" pattern="09[0-9]{9}"
+                        maxlength="11" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="studentNo">Student No</label>
+                    <input type="text" id="studentNo" name="student_no"
+                        placeholder="" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+
+                    <div class="password-container">
+                        <input type="password" id="signupPassword"
+                            name="password" placeholder=""
+                            minlength="8" required>
+
+                        <button type="button" class="password-toggle"
+                            onclick="toggleSignupPassword()"
+                            aria-label="Show password">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+
+                    <div class="password-container">
+                        <input type="password" id="confirmPassword"
+                            name="confirm_password" placeholder=""
+                            required>
+
+                        <button type="button" class="password-toggle"
+                            onclick="toggleConfirmPassword()"
+                            aria-label="Show confirm password">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ASSESSMENT FORM UPLOAD -->
+                <div class="form-group">
+                    <label for="assessmentForm">Student Assessment Form</label>
+
+                    <label class="upload-box" for="assessmentForm">
+
+                        <span class="upload-icon">
+                            <i class="fa-solid fa-image"></i>
+                        </span>
+
+                        <span id="fileName">
+                            Upload Student Assessment Form
+                        </span>
+
+                        <input type="file"
+                            id="assessmentForm"
+                            name="assessment_form"
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            required>
+
+                    </label>
+                </div>
+
+                <div id="signupMessage" class="form-message"></div>
+
+                <button type="submit" class="signup-button">
+                    SIGN UP
+                </button>
+
+            </form>
+
+            <p class="modal-login">
+                Already have an account?
+                <a href="#" onclick="closeSignup(); return false;">Log In</a>
+            </p>
+
+        </div>
+    </div>
+
+
+    <!-- REGISTRATION SUCCESS MODAL -->
+    <div class="modal-overlay" id="successModal">
+
+        <div class="success-modal">
+
+            <div class="success-icon">
+                <i class="fa-solid fa-user-plus"></i>
+            </div>
+
+            <h3>Account Registered!</h3>
+
+            <p>
+                Please wait for Registrar's verification
+                which will be sent to your email.
+            </p>
+
+            <button type="button" class="success-login-button"
+                onclick="closeSuccess()">
+                LOG IN
+            </button>
+
+        </div>
+    </div>
+
+
+    <!-- RESET PASSWORD MODAL -->
+    <div class="modal-overlay" id="resetPasswordModal">
+
+        <div class="reset-password-modal">
+
+            <button type="button" class="close-modal"
+                onclick="closeResetPassword()" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="reset-header">
+
+                <div class="reset-icon">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+
+                <h2>RESET YOUR PASSWORD</h2>
+
+                <p>
+                    Password must be at least 8 characters and include
+                    uppercase, lowercase, and special characters.
+                </p>
+
+            </div>
+
+            <form id="resetPasswordForm">
+
+                <div class="form-group">
+
+                    <label for="newPassword"></label>
+
+                    <div class="password-container">
+
+                        <input type="password" id="newPassword"
+                            placeholder=" NEW PASSWORD" minlength="8"
+                            autocomplete="new-password" required>
+
+                        <button type="button" class="password-toggle"
+                            onclick="toggleResetPassword('newPassword', 'newPasswordEye')"
+                            aria-label="Show new password">
+
+                            <i class="fa-solid fa-eye" id="newPasswordEye"></i>
+
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <label for="confirmNewPassword"></label>
+
+                    <div class="password-container">
+
+                        <input type="password" id="confirmNewPassword"
+                            placeholder="CONFIRM PASSWORD"
+                            autocomplete="new-password" required>
+
+                        <button type="button" class="password-toggle"
+                            onclick="toggleResetPassword('confirmNewPassword', 'confirmNewPasswordEye')"
+                            aria-label="Show confirm password">
+
+                            <i class="fa-solid fa-eye" id="confirmNewPasswordEye"></i>
+
+                        </button>
+
+                    </div>
+                </div>
+
+                <div id="resetMessage" class="reset-message"
+                    aria-live="polite"></div>
+
+                <button type="submit" class="reset-button">
+                    Reset Password
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
